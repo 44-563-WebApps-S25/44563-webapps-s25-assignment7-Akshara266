@@ -55,13 +55,13 @@
             <script>
                 const gameField = document.querySelector(".game-field");
 
-                // Image paths (relative to the project folder)
+            
                 const images = {
-                    cactus: "images/cactus.png",      // Default image
-                    gold: "images/gold_nugget.png",  // Gold Nugget
-                    silver: "images/silver_coin.png", // Silver Coin
-                    pottery: "images/pottery.png",  // Pottery
-                    snake: "images/snake.png"       // Snake
+                    cactus: "cactus.jpg",      // Default image
+                    gold: "Gold digger.webp",  // Gold Nugget
+                    silver: "silver coin.jpeg", // Silver Coin
+                    pottery: "pottery.jpeg",  // Pottery
+                    snake: "isnake.jpg"       // Snake
                 };
 
                 // Generate a 5x7 grid with only cactus images initially
@@ -70,7 +70,7 @@
                     div.className = "location";
                     
                     let img = document.createElement("img");
-                    img.src = images.cactus; // Initially set all images to cactus
+                    img.src = "cactus.jpg"; // Initially set all images to cactus
                     img.alt = "Cactus";
                     
                     div.appendChild(img);
