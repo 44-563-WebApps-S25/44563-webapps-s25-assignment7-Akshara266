@@ -7,34 +7,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background-color: #f8f9fa;
             text-align: center;
-            margin: 20px;
-            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .info {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .game-field {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
             margin-top: 20px;
         }
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 80px);
-            gap: 5px;
-        }
-        .game-grid div {
+        .location {
             width: 80px;
             height: 80px;
+            background-color: #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ccc;
-            background-color: #f8f8f8;
+            border-radius: 5px;
             cursor: pointer;
         }
-        .game-grid img {
-            width: 70px;
-            height: 70px;
+        .location img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -43,28 +44,39 @@
     <div class="container">
         <h1>Jhansi Akshara Digs for Treasure</h1>
         <p>Click on the locations to find silver and gold, watch out for the rattlesnake.</p>
-
+        
         <p class="info" id="locations">Number of locations checked is zero.</p>
         <p class="info" id="score">Score is zero.</p>
         <p class="info">Click for help.</p>
         <p class="info" id="help">Help report.</p>
 
         <!-- Game Field -->
-        <div class="game-container">
-            <div class="game-grid">
-                <!-- Generate 5x7 grid with cactus images -->
-                <script>
-                    const grid = document.querySelector('.game-grid');
-                    for (let i = 0; i < 35; i++) {
-                        let cell = document.createElement('div');
-                        let img = document.createElement('img');
-                        img.src = "cactus.jpg"; // Cactus Image
-                        img.alt = "Cactus";
-                        cell.appendChild(img);
-                        grid.appendChild(cell);
-                    }
-                </script>
-            </div>
+        <div class="game-field">
+            <script>
+                const gameField = document.querySelector(".game-field");
+
+                // Image paths (relative to the project folder)
+                const images = {
+                    cactus: "images/cactus.png",      // Default image
+                    gold: "images/gold_nugget.png",  // Gold Nugget
+                    silver: "images/silver_coin.png", // Silver Coin
+                    pottery: "images/pottery.png",  // Pottery
+                    snake: "images/snake.png"       // Snake
+                };
+
+                // Generate a 5x7 grid with only cactus images initially
+                for (let i = 0; i < 5 * 7; i++) {
+                    let div = document.createElement("div");
+                    div.className = "location";
+                    
+                    let img = document.createElement("img");
+                    img.src = images.cactus; // Initially set all images to cactus
+                    img.alt = "Cactus";
+                    
+                    div.appendChild(img);
+                    gameField.appendChild(div);
+                }
+            </script>
         </div>
     </div>
 
