@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jhansi Akshara Sanagala Reflexes</title>
+</head>
+<body>
+    <h1>Jhansi Akshara Sanagala Reflexes</h1>
+    <div id="target">Your time</div>
+    <div id="counter">Count</div>
+    <button onclick="beginTime()">Go</button>
+    <button onclick="recordTime()">Halt</button>
+
+    <script>
+        let haltTime;
+        
+        function recordTime() {
+            haltTime = Date.now();
+            console.log(haltTime);
+        }
+
+        function beginTime() {
+            haltTime = undefined;
+            for (let i = 0; i <= 5; i++) {
+                setTimeout(() => {
+                    document.getElementById("counter").innerText = `Count: ${5 - i}`;
+                }, i * 1000);
+            }
+
+            setTimeout(() => {
+                if (!haltTime) {
+                    document.getElementById("target").innerText = "Not soon enough";
+                } else {
+                    let diff = Date.now() - haltTime;
+                    document.getElementById("target").innerText = `Time was ${diff}ms`;
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
